@@ -6,4 +6,19 @@
     <string name="login_ButtonText">Login</string>
     <string name="new_user_sign_up">New user? Sign Up</string>
     <string name="forgot_password">Forgot Password</string>
+    <string name="sign_up_text">SIGN UP</string>
+    <string name="enter_staff_id">Enter Staff Id</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_staff_name">Enter Staff Name</string>
+    <string name="department">Department</string>
+    <string name="enter_college_mail_id">Enter college mail Id</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="create_password">Create Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="attendance">Attendance</string>
+    <string name="view_attendance">View Attendance</string>
+    <string name="profile">Profile</string>
+    <string name="mark_attendance">Mark Attendance</string>
 </resources>

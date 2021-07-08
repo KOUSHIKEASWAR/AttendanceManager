@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_500"
+    tools:context=".SignUpActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/signUpTopGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <TextView
+        android:id="@+id/signUp_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/sign_up_text"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUpTopGuideline" />
+
+    <EditText
+        android:id="@+id/staffId_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/enter_staff_id"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_TextView"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/staffName_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/enter_staff_name"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/staffId_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/staffId_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/staffId_EditText"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/dept_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/department"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/mail_editText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/mail_editText"
+        app:layout_constraintTop_toBottomOf="@+id/mail_editText"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/mail_editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/enter_college_mail_id"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/staffName_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/staffName_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/staffName_EditText"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/sigUp_Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/sign_up"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/teal_200"
+        app:layout_constraintBottom_toTopOf="@id/signUpBottomGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/confirmPassword_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/confirmPassword_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword_EditText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/phone_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/enter_phone_number"
+        android:inputType="number"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/dept_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dept_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/dept_EditText"
+        tools:ignore="Autofill,TextFields" />
+
+    <EditText
+        android:id="@+id/createPassword_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/create_password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/phone_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phone_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/phone_EditText"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/confirmPassword_EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textColorHint="#CDCCCC"
+        app:layout_constraintEnd_toEndOf="@+id/createPassword_EditText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/createPassword_EditText"
+        app:layout_constraintTop_toBottomOf="@+id/createPassword_EditText"
+        tools:ignore="Autofill" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/signUpBottomGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
