@@ -1,13 +1,30 @@
 package com.example.attendancemanager;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -16,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     final Fragment profileFragment = new ProfileFragment();
     final FragmentManager fragmentManager = getSupportFragmentManager();
     static Fragment active = attendanceFragment;
+
+    ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().add(R.id.frameLayout, profileFragment, "3").hide(profileFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, viewAttendanceFragment, "2").hide(viewAttendanceFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, attendanceFragment, "1").commit();
+
+        getItems();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -50,4 +71,92 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     };
+
+    private void getItems() {
+
+        loading =  ProgressDialog.show(this,"Loading","please wait",false,true);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://script.google.com/macros/s/AKfycbydb7Fr8ItCL_zxLL9AGEqkXuAn-472IQVP54-zmgZmVSWsZy8y63_HL2OSokQCXzw/exec?action=getItems",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        parseItems(response);
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomeActivity.this, "Error 404 Data Not Found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        int socketTimeOut = 10000;
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+        stringRequest.setRetryPolicy(policy);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest);
+    }
+
+    private void parseItems(String jsonResp){
+
+        try {
+            JSONObject jobj = new JSONObject(jsonResp);
+            JSONArray jarray = jobj.getJSONArray("items");
+
+            for (int i = 0; i < jarray.length(); i++) {
+
+                JSONObject jo = jarray.getJSONObject(i);
+
+                String batch = jo.getString("Batch");
+                String dept = jo.getString("Dept");
+                String section = jo.getString("Section");
+                String sem = jo.getString("Sem");
+
+                Batchdetails.batches.add(batch);
+                Batchdetails.sems.add(sem);
+
+                if (i == 0) {
+                    Batchdetails.batch0dept.add(dept.split("/"));
+                    String[] temp = section.split("/");
+                    for (int j = 0; j < temp.length; j++) {
+                        Batchdetails.batch0dept.add(temp[i].split(","));
+                    }
+                }
+                else if (i == 1) {
+                    Batchdetails.batch1dept.add(dept.split("/"));
+                    String[] temp = section.split("/");
+                    for (int j = 0; j < temp.length; j++) {
+                        Batchdetails.batch1dept.add(temp[i].split(","));
+                    }
+                }
+                else if (i == 2) {
+                    Batchdetails.batch2dept.add(dept.split("/"));
+                    String[] temp = section.split("/");
+                    for (int j = 0; j < temp.length; j++) {
+                        Batchdetails.batch2dept.add(temp[i].split(","));
+                    }
+                }
+                else if (i == 3) {
+                    Batchdetails.batch3dept.add(dept.split("/"));
+                    String[] temp = section.split("/");
+                    for (int j = 0; j < temp.length; j++) {
+                        Batchdetails.batch3dept.add(temp[i].split(","));
+                    }
+                }
+
+            }
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        loading.dismiss();
+
+    }
+
 }
