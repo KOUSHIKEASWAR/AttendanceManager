@@ -120,31 +120,31 @@ public class HomeActivity extends AppCompatActivity {
                 Batchdetails.sems.add(sem);
 
                 if (i == 0) {
-                    Batchdetails.batch0dept.add(dept.split("/"));
-                    String[] temp = section.split("/");
-                    for (int j = 0; j < temp.length; j++) {
-                        Batchdetails.batch0dept.add(temp[i].split(","));
+                    String[] tempDept = dept.split("/");
+                    String[] tempSection = section.split("/");
+                    for (int j = 0; j < tempDept.length; j++) {
+                        Batchdetails.batch0dept.put(tempDept[j], tempSection[j].split(","));
                     }
                 }
                 else if (i == 1) {
-                    Batchdetails.batch1dept.add(dept.split("/"));
-                    String[] temp = section.split("/");
-                    for (int j = 0; j < temp.length; j++) {
-                        Batchdetails.batch1dept.add(temp[i].split(","));
+                    String[] tempDept = dept.split("/");
+                    String[] tempSection = section.split("/");
+                    for (int j = 0; j < tempDept.length; j++) {
+                        Batchdetails.batch1dept.put(tempDept[j], tempSection[j].split(","));
                     }
                 }
                 else if (i == 2) {
-                    Batchdetails.batch2dept.add(dept.split("/"));
-                    String[] temp = section.split("/");
-                    for (int j = 0; j < temp.length; j++) {
-                        Batchdetails.batch2dept.add(temp[i].split(","));
+                    String[] tempDept = dept.split("/");
+                    String[] tempSection = section.split("/");
+                    for (int j = 0; j < tempDept.length; j++) {
+                        Batchdetails.batch2dept.put(tempDept[j], tempSection[j].split(","));
                     }
                 }
                 else if (i == 3) {
-                    Batchdetails.batch3dept.add(dept.split("/"));
-                    String[] temp = section.split("/");
-                    for (int j = 0; j < temp.length; j++) {
-                        Batchdetails.batch3dept.add(temp[i].split(","));
+                    String[] tempDept = dept.split("/");
+                    String[] tempSection = section.split("/");
+                    for (int j = 0; j < tempDept.length; j++) {
+                        Batchdetails.batch3dept.put(tempDept[j], tempSection[j].split(","));
                     }
                 }
 
