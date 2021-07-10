@@ -6,28 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 public class AttendanceFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    String batchSelected = "NS"; //NS for "Not Selected"
+    Button markAttendanceButton;
     Spinner batchSpin, deptSpin, sectSpin, semSpin, hrSpin, subSpin;
-    String[] hours = {"Select Hour", "1", "2", "3", "4", "5", "6", "7", "8"};
+    String[] hours = {"Select Hour", "First Hour", "Second Hour", "Third Hour", "Fourth Hour", "Fifth Hour", "Sixth Hour", "Seventh Hour"};
+    String[] subs = {"Select Subject", "CS8651 - IP", "CS8691 - AI", "CS8601 - MC", "CS8602 - DS", "CS8075 - DWDM", "CS8661 - IP LAB", "CS8662 - MAD LAB", "CS8611 - MINI PROJECT"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_attendance, container, false);
+
+        markAttendanceButton = view.findViewById(R.id.markAttendance_Button);
 
         batchSpin = view.findViewById(R.id.batch_Spinner);
         deptSpin = view.findViewById(R.id.dept_Spinner);
@@ -44,21 +44,31 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
         ArrayAdapter hourAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, hours);
         hrSpin.setAdapter(hourAdapter);
 
+        subSpin.setOnItemSelectedListener(this);
+        ArrayAdapter subAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, subs);
+        subSpin.setAdapter(subAdapter);
+
+        markAttendanceButton.setOnClickListener(v -> {
+            HomeActivity.changeToBatchFragment();
+        });
+
         return view;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
         if (adapterView == batchSpin){
-            batchSelected = batchSpin.getSelectedItem().toString();
+            Batchdetails.batchSelected = batchSpin.getSelectedItem().toString();
             setDeptOptions();
             setSemOption();
         }
+
         if (adapterView == deptSpin) {
             String[] temp;
-            int index = Batchdetails.batches.indexOf(batchSelected);
+            int index = Batchdetails.batches.indexOf(Batchdetails.batchSelected);
             String temp2 = deptSpin.getSelectedItem().toString();
-            if (temp2 != "Select Department") {
+            if (!temp2.equals("Select Department")) {
                 switch (index) {
                     case 1:
                         temp = Batchdetails.batch0dept.get(temp2);
@@ -85,53 +95,59 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
             }
         }
 
+        if (adapterView == sectSpin) {
+            Batchdetails.sectSelected = sectSpin.getSelectedItem().toString();
+        }
+
+        if (adapterView == semSpin) {
+            Batchdetails.semSelected = semSpin.getOnItemSelectedListener().toString();
+        }
+
+        if (adapterView == hrSpin) {
+            Batchdetails.hrSelected = hrSpin.getOnItemSelectedListener().toString();
+        }
+
+        if (adapterView == subSpin) {
+            Batchdetails.subSelected = subSpin.getOnItemSelectedListener().toString();
+        }
+
     }
 
     private void setDeptOptions() {
 
-        if (!batchSelected.equals("NS")) {
+        if (!Batchdetails.batchSelected.equals("Select a Batch")) {
 
-            ArrayList<String> deptOptions = new ArrayList<>(Collections.singletonList("Department"));
-            int index = Batchdetails.batches.indexOf(batchSelected);
-            ArrayList<String> temp = new ArrayList<>();
-            temp.add("Select Department");
+            ArrayList<String> deptOptions = new ArrayList<>(Collections.singletonList("Select Department"));
+            int index = Batchdetails.batches.indexOf(Batchdetails.batchSelected);
             switch (index) {
                 case 1:
-                    for (String ks : Batchdetails.batch0dept.keySet()) {
-                        temp.add(ks);
-                    }
+                    deptOptions.addAll(Batchdetails.batch0dept.keySet());
                     break;
 
                 case 2:
-                    for (String ks : Batchdetails.batch1dept.keySet()) {
-                        temp.add(ks);
-                    }
+                    deptOptions.addAll(Batchdetails.batch1dept.keySet());
                     break;
 
                 case 3:
-                    for (String ks : Batchdetails.batch2dept.keySet()) {
-                        temp.add(ks);
-                    }
+                    deptOptions.addAll(Batchdetails.batch2dept.keySet());
                     break;
 
                 case 4:
-                    for (String ks : Batchdetails.batch3dept.keySet()) {
-                        temp.add(ks);
-                    }
+                    deptOptions.addAll(Batchdetails.batch3dept.keySet());
                     break;
 
             }
             deptSpin.setOnItemSelectedListener(this);
-            ArrayAdapter deptAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, temp);
+            ArrayAdapter deptAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, deptOptions);
             deptSpin.setAdapter(deptAdapter);
 
         }
     }
 
     private void setSemOption() {
-        if (!batchSelected.equals("NS")) {
+        if (!Batchdetails.batchSelected.equals("Select a Batch")) {
             ArrayList<String> semOptions = new ArrayList<>();
-            semOptions.add(Batchdetails.sems.get(Batchdetails.batches.indexOf(batchSelected)));
+            semOptions.add(Batchdetails.sems.get(Batchdetails.batches.indexOf(Batchdetails.batchSelected)));
             semSpin.setOnItemSelectedListener(this);
             ArrayAdapter semAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, semOptions);
             semSpin.setAdapter(semAdapter);

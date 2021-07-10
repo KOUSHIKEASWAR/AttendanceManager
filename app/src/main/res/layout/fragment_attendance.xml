@@ -20,17 +20,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
-        app:layout_constraintTop_toTopOf="@id/horizontal_Guideline1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/dept_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
         app:layout_constraintTop_toBottomOf="@+id/batch_Spinner" />
 
@@ -38,10 +36,8 @@
         android:id="@+id/section_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toStartOf="@+id/sem_Spinner"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="45dp"
+        app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
         app:layout_constraintTop_toBottomOf="@+id/dept_Spinner" />
 
@@ -49,20 +45,17 @@
         android:id="@+id/sem_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/section_Spinner"
+        android:layout_marginTop="46dp"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/section_Spinner"
-        app:layout_constraintTop_toTopOf="@+id/section_Spinner" />
+        app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/section_Spinner" />
 
     <Spinner
         android:id="@+id/hour_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
         app:layout_constraintTop_toBottomOf="@+id/sem_Spinner" />
 
@@ -70,9 +63,8 @@
         android:id="@+id/subject_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="45dp"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
         app:layout_constraintTop_toBottomOf="@+id/hour_Spinner" />
 
@@ -80,11 +72,9 @@
         android:id="@+id/markAttendance_Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="46dp"
         android:text="@string/mark_attendance"
-        app:layout_constraintBottom_toTopOf="@+id/horizontal_Guideline2"
         app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
         app:layout_constraintTop_toBottomOf="@+id/subject_Spinner" />
 
@@ -94,19 +84,5 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.85" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_Guideline1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horizontal_Guideline2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

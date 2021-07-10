@@ -28,7 +28,10 @@ import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
 
-    final Fragment viewAttendanceFragment = new ViewAttendanceFragment();
+    static final Fragment atChildBatchFragment = new AtChildBatchFragment();
+    static final Fragment atChildListFragment = new AtChildListFragment();
+
+    static final Fragment viewAttendanceFragment = new ViewAttendanceFragment();
     static final Fragment attendanceFragment = new AttendanceFragment();
     final Fragment profileFragment = new ProfileFragment();
     final FragmentManager fragmentManager = getSupportFragmentManager();
@@ -71,6 +74,12 @@ public class HomeActivity extends AppCompatActivity {
         }
         return false;
     };
+
+    public static void changeToBatchFragment(){
+        FragmentManager fragmentManager1 = active.getParentFragmentManager();
+        fragmentManager1.beginTransaction().hide(active).show(atChildBatchFragment).commit();
+        active = atChildBatchFragment;
+    }
 
     private void getItems() {
 

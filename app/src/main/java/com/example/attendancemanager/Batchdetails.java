@@ -12,4 +12,6 @@ public class Batchdetails {
     static HashMap<String, String[]> batch3dept = new HashMap<>();
     static ArrayList<String> sems = new ArrayList<>(Arrays.asList("Sem"));
 
+    static String batchSelected, deptSelected, sectSelected, semSelected, hrSelected, subSelected;
+
 }
