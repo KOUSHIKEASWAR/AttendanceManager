@@ -28,8 +28,8 @@ import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
 
-    static final Fragment atChildBatchFragment = new AtChildBatchFragment();
-    static final Fragment atChildListFragment = new AtChildListFragment();
+    static final Fragment markAttendanceFragment = new MarkAttendanceFragment();
+    static final Fragment attendanceConfirmFragment = new AttendanceConfirmFragment();
 
     static final Fragment viewAttendanceFragment = new ViewAttendanceFragment();
     static final Fragment attendanceFragment = new AttendanceFragment();
@@ -46,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        fragmentManager.beginTransaction().add(R.id.frameLayout, attendanceConfirmFragment, "5").hide(markAttendanceFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.frameLayout, markAttendanceFragment, "4").hide(markAttendanceFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, profileFragment, "3").hide(profileFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, viewAttendanceFragment, "2").hide(viewAttendanceFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, attendanceFragment, "1").commit();
@@ -75,10 +77,47 @@ public class HomeActivity extends AppCompatActivity {
         return false;
     };
 
-    public static void changeToBatchFragment(){
-        FragmentManager fragmentManager1 = active.getParentFragmentManager();
-        fragmentManager1.beginTransaction().hide(active).show(atChildBatchFragment).commit();
-        active = atChildBatchFragment;
+    public static void changeToMarkAttendanceFragment(){
+        FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
+        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
+        //active = markAttendanceFragment;
+
+        fragmentManager1.beginTransaction()
+                .replace(R.id.frameLayout, MarkAttendanceFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("1") // name can be null
+                .commit();
+
+        active = markAttendanceFragment;
+
+    }
+
+    public static void changeToAttendanceConfirmFragment() {
+        FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
+        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
+        //active = markAttendanceFragment;
+
+        fragmentManager1.beginTransaction()
+                .replace(R.id.frameLayout, AttendanceConfirmFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("4") // name can be null
+                .commit();
+
+        active = markAttendanceFragment;
+    }
+
+    public static void changeToViewAttendanceFragment() {
+        FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
+        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
+        //active = markAttendanceFragment;
+
+        fragmentManager1.beginTransaction()
+                .replace(R.id.frameLayout, ViewAttendanceFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack("1") // name can be null
+                .commit();
+
+        active = markAttendanceFragment;
     }
 
     private void getItems() {

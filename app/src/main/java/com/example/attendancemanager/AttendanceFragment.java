@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +19,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
     Button markAttendanceButton;
     Spinner batchSpin, deptSpin, sectSpin, semSpin, hrSpin, subSpin;
     String[] hours = {"Select Hour", "First Hour", "Second Hour", "Third Hour", "Fourth Hour", "Fifth Hour", "Sixth Hour", "Seventh Hour"};
-    String[] subs = {"Select Subject", "CS8651 - IP", "CS8691 - AI", "CS8601 - MC", "CS8602 - DS", "CS8075 - DWDM", "CS8661 - IP LAB", "CS8662 - MAD LAB", "CS8611 - MINI PROJECT"};
+    String[] subs = {"Select Subject", "CS8651 - IP", "CS8691 - AI", "CS8601 - MC", "CS8602 - DS", "CS8075 - DWDM", "CS8661 - IP LAB", "CS8602 - CD", "CS8662 - MAD LAB", "CS8611 - MINI PROJECT"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +48,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
         subSpin.setAdapter(subAdapter);
 
         markAttendanceButton.setOnClickListener(v -> {
-            HomeActivity.changeToBatchFragment();
+            HomeActivity.changeToMarkAttendanceFragment();
         });
 
         return view;
@@ -99,16 +98,16 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
             Batchdetails.sectSelected = sectSpin.getSelectedItem().toString();
         }
 
-        if (adapterView == semSpin) {
-            Batchdetails.semSelected = semSpin.getOnItemSelectedListener().toString();
+        if (adapterView == deptSpin) {
+            Batchdetails.deptSelected = deptSpin.getSelectedItem().toString();
         }
 
         if (adapterView == hrSpin) {
-            Batchdetails.hrSelected = hrSpin.getOnItemSelectedListener().toString();
+            Batchdetails.hrSelected = hrSpin.getSelectedItem().toString();
         }
 
         if (adapterView == subSpin) {
-            Batchdetails.subSelected = subSpin.getOnItemSelectedListener().toString();
+            Batchdetails.subSelected = subSpin.getSelectedItem().toString();
         }
 
     }
@@ -151,6 +150,8 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
             semSpin.setOnItemSelectedListener(this);
             ArrayAdapter semAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, semOptions);
             semSpin.setAdapter(semAdapter);
+
+            Batchdetails.semSelected = semOptions.get(0);
         }
     }
 

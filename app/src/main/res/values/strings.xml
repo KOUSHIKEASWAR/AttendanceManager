@@ -21,4 +21,12 @@
     <string name="view_attendance">View Attendance</string>
     <string name="profile">Profile</string>
     <string name="mark_attendance">Mark Attendance</string>
+    <string name="batch_dept_sect">BATCH-DEPT-SECT</string>
+    <string name="sem_x">SEM : X</string>
+    <string name="hour">HOUR</string>
+    <string name="date">DATE</string>
+    <string name="subject">SUBJECT</string>
+    <string name="day">DAY</string>
+    <string name="save_attendance">SAVE ATTENDANCE</string>
+    <string name="confirm_attendance">Confirm Attendance</string>
 </resources>
