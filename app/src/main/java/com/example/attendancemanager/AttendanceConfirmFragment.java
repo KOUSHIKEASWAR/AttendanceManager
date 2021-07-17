@@ -109,7 +109,7 @@ public class AttendanceConfirmFragment extends Fragment {
         odList.setAdapter(odListAdapter);
 
         saveAttendance.setOnClickListener(v -> {
-            //Toast.makeText(getContext(), String.valueOf(Batchdetails.attendance.subList(1, Batchdetails.attendance.size())), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(), Batchdetails.batchSelected.substring(0,4) + "_" + Batchdetails.deptSelected + "_" + Batchdetails.sectSelected, Toast.LENGTH_LONG).show();
             addItemToSheet();
             HomeActivity.changeToViewAttendanceFragment();
         });
@@ -121,7 +121,9 @@ public class AttendanceConfirmFragment extends Fragment {
 
         final ProgressDialog loading = ProgressDialog.show(getContext(),"Adding Item","Please wait");
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycbyIWvtQ5qgqR_2AuQuk5qcfMn-zIFmz677HOwqXafQAMV7DFb_4V25W9AJCvom-Gpc/exec",
+        String url = "https://script.google.com/macros/s/AKfycbws-4BNJ4I-KEM9DxQMMAlJsBtzHeQkl-LGh9ymWWfH5B96zGtsBeE9DpOvb8hHKPs/exec";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -145,8 +147,11 @@ public class AttendanceConfirmFragment extends Fragment {
                 Map<String, String> parmas = new HashMap<>();
                 String status = null;
                 String attDet;
+                String sheet;
 
                 //here we pass params
+                sheet = new StringBuilder().append(Batchdetails.batchSelected.substring(0,4)).append("_").append(Batchdetails.deptSelected).append("_").append(Batchdetails.sectSelected).toString();
+                parmas.put("Sheet", sheet);
                 parmas.put("action", "addItem");
                 attDet = new StringBuilder().append(Batchdetails.dateSelected).append("\n").append(Batchdetails.hrSelected).append("\n").append(Batchdetails.subSelected).toString();
                 parmas.put("Attendance", attDet);

@@ -12,7 +12,7 @@ public class Batchdetails {
     static HashMap<String, String[]> batch3dept = new HashMap<>();
     static ArrayList<String> sems = new ArrayList<>(Arrays.asList("Sem"));
 
-    static String batchSelected, deptSelected, sectSelected, semSelected, hrSelected, subSelected, daySelected, dateSelected;
+    static String batchSelected = "2000", deptSelected, sectSelected, semSelected, hrSelected, subSelected, daySelected, dateSelected;
 
     static ArrayList<String> Sno = new ArrayList<>();
     static ArrayList<String> Rno = new ArrayList<>();
@@ -22,4 +22,5 @@ public class Batchdetails {
 
     static ArrayList<HashMap<String, String>> absenteesList = new ArrayList<>();
     static ArrayList<HashMap<String, String>> odList = new ArrayList<>();
+
 }

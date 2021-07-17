@@ -46,10 +46,14 @@ public class MarkAttendanceFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mark_attendance, container, false);
 
+        markAttendanceRecyclerView = view.findViewById(R.id.students_ListView);
+
+        getItems();
+
         confirmAttendance = view.findViewById(R.id.confirmAttendance_Button);
 
         batchDeptSect = view.findViewById(R.id.batchDeptSect_TextView);
-        batchDeptSect.setText(String.format("%s-%s-%s", Batchdetails.batchSelected, Batchdetails.deptSelected, Batchdetails.sectSelected));
+        batchDeptSect.setText(String.format("%s - %s - %s", Batchdetails.batchSelected, Batchdetails.deptSelected, Batchdetails.sectSelected));
 
         sem = view.findViewById(R.id.semester_TextView);
         sem.setText(String.format("Sem : %s", Batchdetails.semSelected));
@@ -72,26 +76,6 @@ public class MarkAttendanceFragment extends Fragment {
         day.setText(days[dayOfWeek - 1]);
         Batchdetails.daySelected = days[dayOfWeek - 1];
 
-        //Batchdetails.attendance.add(currentDate.format(todayDate) + "\n" + Batchdetails.hrSelected + "\n" + Batchdetails.subSelected);
-
-        getItems();
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
-        markAttendanceRecyclerView = view.findViewById(R.id.students_ListView);
-        markAttendanceRecyclerView.setLayoutManager(linearLayoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(markAttendanceRecyclerView.getContext(),
-                linearLayoutManager.getOrientation());
-        markAttendanceRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        markAttendanceAdapter = new MarkAttendanceAdapter(view.getContext(), Batchdetails.Sno, Batchdetails.Rno, Batchdetails.Sname);
-        markAttendanceRecyclerView.setAdapter(markAttendanceAdapter);
-
-        Batchdetails.attendance.clear();
-        Batchdetails.attendance.add(0, "Attendance");
-        for (int i = 0; i < Batchdetails.Sno.size(); i++)
-            Batchdetails.attendance.add(Integer.parseInt(Batchdetails.Sno.get(i)), "P");
-
         confirmAttendance.setOnClickListener(v -> {
             HomeActivity.changeToAttendanceConfirmFragment();
         });
@@ -103,7 +87,10 @@ public class MarkAttendanceFragment extends Fragment {
 
         loading =  ProgressDialog.show(getContext(),"Loading","please wait",false,true);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://script.google.com/macros/s/AKfycbyIWvtQ5qgqR_2AuQuk5qcfMn-zIFmz677HOwqXafQAMV7DFb_4V25W9AJCvom-Gpc/exec?action=getItems",
+        String url = "https://script.google.com/macros/s/AKfycbws-4BNJ4I-KEM9DxQMMAlJsBtzHeQkl-LGh9ymWWfH5B96zGtsBeE9DpOvb8hHKPs/exec?action=getItems&Sheet=";
+        String url2 = new StringBuilder().append(url).append(Batchdetails.batchSelected.substring(0,4)).append("_").append(Batchdetails.deptSelected).append("_").append(Batchdetails.sectSelected).toString();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -119,7 +106,7 @@ public class MarkAttendanceFragment extends Fragment {
                 }
         );
 
-        int socketTimeOut = 10000;
+        int socketTimeOut = 50000;
         RetryPolicy policy = new DefaultRetryPolicy(socketTimeOut, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
 
         stringRequest.setRetryPolicy(policy);
@@ -158,6 +145,22 @@ public class MarkAttendanceFragment extends Fragment {
         catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Batchdetails.attendance.clear();
+        Batchdetails.attendance.add(0, "Attendance");
+        for (int i = 0; i < Batchdetails.Sno.size(); i++)
+            Batchdetails.attendance.add(Integer.parseInt(Batchdetails.Sno.get(i)), "P");
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        //markAttendanceRecyclerView = findViewById(R.id.students_ListView);
+        markAttendanceRecyclerView.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(markAttendanceRecyclerView.getContext(),
+                linearLayoutManager.getOrientation());
+        markAttendanceRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        markAttendanceAdapter = new MarkAttendanceAdapter(getContext(), Batchdetails.Sno, Batchdetails.Rno, Batchdetails.Sname);
+        markAttendanceRecyclerView.setAdapter(markAttendanceAdapter);
 
         loading.dismiss();
     }
