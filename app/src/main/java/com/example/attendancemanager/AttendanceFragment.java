@@ -17,9 +17,8 @@ import java.util.Collections;
 public class AttendanceFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     Button markAttendanceButton;
-    Spinner batchSpin, deptSpin, sectSpin, semSpin, hrSpin, subSpin;
+    Spinner batchSpin, deptSpin, sectSpin, semSpin, hrSpin;
     String[] hours = {"Select Hour", "First Hour", "Second Hour", "Third Hour", "Fourth Hour", "Fifth Hour", "Sixth Hour", "Seventh Hour"};
-    String[] subs = {"Select Subject", "CS8651 - IP", "CS8691 - AI", "CS8601 - MC", "CS8602 - DS", "CS8075 - DWDM", "CS8661 - IP LAB", "CS8602 - CD", "CS8662 - MAD LAB", "CS8611 - MINI PROJECT"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,7 +32,6 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
         sectSpin = view.findViewById(R.id.section_Spinner);
         semSpin = view.findViewById(R.id.sem_Spinner);
         hrSpin = view.findViewById(R.id.hour_Spinner);
-        subSpin = view.findViewById(R.id.subject_Spinner);
 
         batchSpin.setOnItemSelectedListener(this);
         ArrayAdapter batchAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, Batchdetails.batches);
@@ -43,11 +41,8 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
         ArrayAdapter hourAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, hours);
         hrSpin.setAdapter(hourAdapter);
 
-        subSpin.setOnItemSelectedListener(this);
-        ArrayAdapter subAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, subs);
-        subSpin.setAdapter(subAdapter);
-
         markAttendanceButton.setOnClickListener(v -> {
+            Batchdetails.attendance.clear();
             HomeActivity.changeToMarkAttendanceFragment();
         });
 
@@ -104,10 +99,6 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
 
         if (adapterView == hrSpin) {
             Batchdetails.hrSelected = hrSpin.getSelectedItem().toString();
-        }
-
-        if (adapterView == subSpin) {
-            Batchdetails.subSelected = subSpin.getSelectedItem().toString();
         }
 
     }

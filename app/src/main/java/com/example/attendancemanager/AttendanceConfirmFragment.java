@@ -53,7 +53,7 @@ public class AttendanceConfirmFragment extends Fragment {
         hour = view.findViewById(R.id.hour_TextView);
         hour.setText(Batchdetails.hrSelected);
 
-        subject = view.findViewById(R.id.subject_TextView);
+        subject = view.findViewById(R.id.sub_TextView);
         subject.setText(Batchdetails.subSelected);
 
         date = view.findViewById(R.id.date_TextView);

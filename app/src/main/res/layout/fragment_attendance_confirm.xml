@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/batch_dept_sect"
+                android:layout_column="0"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
 
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="@string/sem_x"
+                android:layout_column="1"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
         </TableRow>
@@ -50,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hour"
+                android:layout_column="0"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
 
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="@string/date"
+                android:layout_column="1"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
         </TableRow>
@@ -68,9 +72,10 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/subject_TextView"
+                android:id="@+id/sub_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
                 android:text="@string/subject"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
@@ -81,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="@string/day"
+                android:layout_column="1"
                 android:textColor="@color/teal_200"
                 android:textSize="20sp" />
         </TableRow>

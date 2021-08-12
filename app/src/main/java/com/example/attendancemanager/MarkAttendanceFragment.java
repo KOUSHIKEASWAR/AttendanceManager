@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +33,18 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
-public class MarkAttendanceFragment extends Fragment {
+public class MarkAttendanceFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     RecyclerView markAttendanceRecyclerView;
     MarkAttendanceAdapter markAttendanceAdapter;
     ProgressDialog loading;
-    TextView batchDeptSect, sem, hour, date, day, subject;
+    TextView batch, sem, hour, date, day, deptSect;
     Button confirmAttendance;
+    Spinner subjectSpin;
+
     String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
     @Override
@@ -48,12 +54,16 @@ public class MarkAttendanceFragment extends Fragment {
 
         markAttendanceRecyclerView = view.findViewById(R.id.students_ListView);
 
+        getSubItems();
         getItems();
 
         confirmAttendance = view.findViewById(R.id.confirmAttendance_Button);
 
-        batchDeptSect = view.findViewById(R.id.batchDeptSect_TextView);
-        batchDeptSect.setText(String.format("%s - %s - %s", Batchdetails.batchSelected, Batchdetails.deptSelected, Batchdetails.sectSelected));
+        batch = view.findViewById(R.id.batch_TextView);
+        batch.setText(Batchdetails.batchSelected);
+
+        deptSect = view.findViewById(R.id.deptSect_TextView);
+        deptSect.setText(String.format("%s - %s", Batchdetails.deptSelected, Batchdetails.sectSelected));
 
         sem = view.findViewById(R.id.semester_TextView);
         sem.setText(String.format("Sem : %s", Batchdetails.semSelected));
@@ -61,8 +71,10 @@ public class MarkAttendanceFragment extends Fragment {
         hour = view.findViewById(R.id.hour_TextView);
         hour.setText(Batchdetails.hrSelected);
 
-        subject = view.findViewById(R.id.subject_TextView);
-        subject.setText(Batchdetails.subSelected);
+        subjectSpin = view.findViewById(R.id.subject_Spinner);
+        subjectSpin.setOnItemSelectedListener(this);
+        ArrayAdapter subjectAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, Batchdetails.subjects);
+        subjectSpin.setAdapter(subjectAdapter);
 
         date = view.findViewById(R.id.date_TextView);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -146,13 +158,14 @@ public class MarkAttendanceFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Batchdetails.attendance.clear();
-        Batchdetails.attendance.add(0, "Attendance");
-        for (int i = 0; i < Batchdetails.Sno.size(); i++)
-            Batchdetails.attendance.add(Integer.parseInt(Batchdetails.Sno.get(i)), "P");
+        //Batchdetails.attendance.clear();
+        if (Batchdetails.attendance.size() == 0) {
+            Batchdetails.attendance.add(0, "Attendance");
+            for (int i = 0; i < Batchdetails.Sno.size(); i++)
+                Batchdetails.attendance.add(Integer.parseInt(Batchdetails.Sno.get(i)), "P");
+        }
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        //markAttendanceRecyclerView = findViewById(R.id.students_ListView);
         markAttendanceRecyclerView.setLayoutManager(linearLayoutManager);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(markAttendanceRecyclerView.getContext(),
@@ -163,6 +176,65 @@ public class MarkAttendanceFragment extends Fragment {
         markAttendanceRecyclerView.setAdapter(markAttendanceAdapter);
 
         loading.dismiss();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Batchdetails.subSelected = subjectSpin.getSelectedItem().toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    private void getSubItems() {
+
+        String url = "https://script.google.com/macros/s/AKfycbyigUAHnXyT_K9hhJSZcAQSpofrXbGSw8ljE5NuH4elno9n24vVMnZu5kh9h2N_UJQ/exec?action=getItems&Detail=";
+        String url2 = new StringBuilder().append(url).append(Batchdetails.deptSelected).append("_SEM_").append(Batchdetails.semSelected).toString();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url2,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        parseSubItems(response);
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Error 404 Data Not Found", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        queue.add(stringRequest);
+    }
+
+    private void parseSubItems(String jsonResposnce) {
+
+        String[] subs;
+        String det = new StringBuilder().append(Batchdetails.deptSelected).append("_SEM_").append(Batchdetails.semSelected).toString();
+
+        try {
+            JSONObject jobj = new JSONObject(jsonResposnce);
+            JSONArray jarray = jobj.getJSONArray("items");
+
+            JSONObject jo = jarray.getJSONObject(0);
+
+            subs = jo.getString(det).split("/");
+
+            Batchdetails.subjects.clear();
+            Batchdetails.subjects.add("Select a subject");
+            Collections.addAll(Batchdetails.subjects, subs);
+
+        }
+
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }

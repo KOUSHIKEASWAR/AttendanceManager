@@ -45,14 +45,16 @@ public class MarkAttendanceAdapter extends RecyclerView.Adapter<MarkAttendanceAd
 
         String stat = attendance.get(position + 1);
 
-        if (stat == "P") {
-            holder.presentRadioButton.setChecked(true);
-        }
-        else if (stat == "A") {
-            holder.absentRadioButton.setChecked(true);
-        }
-        else if (stat == "OD") {
-            holder.odRadioButton.setChecked(true);
+        switch (stat) {
+            case "P":
+                holder.presentRadioButton.setChecked(true);
+                break;
+            case "A":
+                holder.absentRadioButton.setChecked(true);
+                break;
+            case "OD":
+                holder.odRadioButton.setChecked(true);
+                break;
         }
 
         holder.presentRadioButton.setOnClickListener(v -> {

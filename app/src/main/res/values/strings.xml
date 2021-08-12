@@ -24,8 +24,9 @@
     <string name="sem_x">SEM : X</string>
     <string name="hour">HOUR</string>
     <string name="date">DATE</string>
-    <string name="subject">SUBJECT</string>
     <string name="day">DAY</string>
     <string name="save_attendance">SAVE ATTENDANCE</string>
     <string name="confirm_attendance">Confirm Attendance</string>
+    <string name="subject">SUBJECT</string>
+    <string name="export_data">EXPORT DATA</string>
 </resources>
