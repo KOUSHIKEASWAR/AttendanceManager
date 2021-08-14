@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/drawable/border.xml" value="0.2203125" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/drawable/button_border.xml" value="0.2203125" />
+        <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/drawable/view_list_border_one.xml" value="0.2203125" />
+        <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/drawable/view_list_border_three.xml" value="0.2203125" />
+        <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/drawable/view_list_border_two.xml" value="0.2203125" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/activity_home.xml" value="0.1358695652173913" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/activity_main.xml" value="0.1358695652173913" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/activity_sign_up.xml" value="0.1358695652173913" />
@@ -15,8 +18,10 @@
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/fragment_view_attendance.xml" value="0.21" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/single_item_list_view.xml" value="0.11277173913043478" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/single_stduent_item_view.xml" value="0.25" />
+        <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/single_view_item_list.xml" value="0.20416666666666666" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/layout/spinner_item.xml" value="0.20380434782608695" />
         <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/menu/menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/ANDROID_PROJECTS/AttendanceManager/app/src/main/res/xml/provider_paths.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

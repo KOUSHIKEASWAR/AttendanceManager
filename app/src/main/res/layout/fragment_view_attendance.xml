@@ -93,17 +93,24 @@
 
     </TableLayout>
 
-
+    <ListView
+        android:id="@+id/fragment_view_ListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/details_TableLayout"
+        app:layout_constraintBottom_toTopOf="@id/exportData_Button" />
 
     <Button
         android:id="@+id/exportData_Button"
+        style="@style/button_style"
         android:layout_width="match_parent"
         android:layout_marginBottom="5dp"
-        android:text="@string/export_data"
         android:fontFamily="@font/amaranth"
-        style="@style/button_style"
+        android:text="@string/export_data"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/studSno_TextView"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:background="@drawable/view_list_border_one"
+        android:text="@string/textview"
+        android:textSize="20sp"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/studName_TextView"
+        app:layout_constraintTop_toTopOf="@id/studRno_TextView" />
+
+    <TextView
+        android:id="@+id/studRno_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:text="@string/textview"
+        android:background="@drawable/view_list_border_two"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/studName_TextView"
+        app:layout_constraintEnd_toEndOf="@id/studName_TextView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/studName_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:text="@string/textview"
+        android:textSize="20sp"
+        android:background="@drawable/view_list_border_three"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toStartOf="@id/studStatus_TextView"
+        app:layout_constraintStart_toEndOf="@+id/studSno_TextView"
+        app:layout_constraintTop_toBottomOf="@id/studRno_TextView"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/studStatus_TextView"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="@string/textview"
+        android:background="@drawable/view_list_border_one"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/studName_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/studName_TextView"
+        app:layout_constraintTop_toTopOf="@id/studRno_TextView"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

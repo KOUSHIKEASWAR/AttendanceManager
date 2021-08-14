@@ -109,7 +109,6 @@ public class AttendanceConfirmFragment extends Fragment {
         odList.setAdapter(odListAdapter);
 
         saveAttendance.setOnClickListener(v -> {
-            //Toast.makeText(getContext(), Batchdetails.batchSelected.substring(0,4) + "_" + Batchdetails.deptSelected + "_" + Batchdetails.sectSelected, Toast.LENGTH_LONG).show();
             addItemToSheet();
             HomeActivity.changeToViewAttendanceFragment();
         });
