@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/view_attendance"
-        android:title="@string/view_attendance"
-        android:icon="@drawable/view_attendance_icon" />
-
-    <item
         android:id="@+id/attendance"
         android:title="@string/attendance"
         android:icon="@drawable/attendance_icon" />

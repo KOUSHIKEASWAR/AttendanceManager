@@ -56,11 +56,6 @@ public class HomeActivity extends AppCompatActivity {
     private final BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = item -> {
         int id = item.getItemId();
         switch (id){
-            case R.id.view_attendance:
-                fragmentManager.beginTransaction().hide(active).show(viewAttendanceFragment).commit();
-                active = viewAttendanceFragment;
-                return true;
-
             case R.id.attendance:
                 fragmentManager.beginTransaction().hide(active).show(attendanceFragment).commit();
                 active = attendanceFragment;
@@ -109,6 +104,18 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
 
         active = markAttendanceFragment;
+    }
+
+    public static void changeToAttendanceFragment() {
+        FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
+
+        fragmentManager1.beginTransaction()
+                .replace(R.id.frameLayout, AttendanceFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null) // name can be null
+                .commit();
+
+        active = attendanceFragment;
     }
 
     private void getItems() {
