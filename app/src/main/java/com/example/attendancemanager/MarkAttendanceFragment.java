@@ -73,7 +73,7 @@ public class MarkAttendanceFragment extends Fragment implements AdapterView.OnIt
 
         subjectSpin = view.findViewById(R.id.subject_Spinner);
         subjectSpin.setOnItemSelectedListener(this);
-        ArrayAdapter subjectAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, Batchdetails.subjects);
+        ArrayAdapter subjectAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, Batchdetails.subjects);
         subjectSpin.setAdapter(subjectAdapter);
 
         date = view.findViewById(R.id.date_TextView);
@@ -158,7 +158,6 @@ public class MarkAttendanceFragment extends Fragment implements AdapterView.OnIt
             e.printStackTrace();
         }
 
-        //Batchdetails.attendance.clear();
         if (Batchdetails.attendance.size() == 0) {
             Batchdetails.attendance.add(0, "Attendance");
             for (int i = 0; i < Batchdetails.Sno.size(); i++)
@@ -181,6 +180,11 @@ public class MarkAttendanceFragment extends Fragment implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Batchdetails.subSelected = subjectSpin.getSelectedItem().toString();
+
+        if (Batchdetails.subSelected != "Select a subject")
+            confirmAttendance.setVisibility(View.VISIBLE);
+        else
+            confirmAttendance.setVisibility(View.INVISIBLE);
     }
 
     @Override

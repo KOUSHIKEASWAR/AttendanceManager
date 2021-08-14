@@ -34,11 +34,11 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
         hrSpin = view.findViewById(R.id.hour_Spinner);
 
         batchSpin.setOnItemSelectedListener(this);
-        ArrayAdapter batchAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, Batchdetails.batches);
+        ArrayAdapter batchAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, Batchdetails.batches);
         batchSpin.setAdapter(batchAdapter);
 
         hrSpin.setOnItemSelectedListener(this);
-        ArrayAdapter hourAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, hours);
+        ArrayAdapter hourAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, hours);
         hrSpin.setAdapter(hourAdapter);
 
         markAttendanceButton.setOnClickListener(v -> {
@@ -84,7 +84,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
                         throw new IllegalStateException("Unexpected value: " + index);
                 }
                 sectSpin.setOnItemSelectedListener(this);
-                ArrayAdapter sectAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, temp);
+                ArrayAdapter sectAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, temp);
                 sectSpin.setAdapter(sectAdapter);
             }
         }
@@ -128,7 +128,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
 
             }
             deptSpin.setOnItemSelectedListener(this);
-            ArrayAdapter deptAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, deptOptions);
+            ArrayAdapter deptAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, deptOptions);
             deptSpin.setAdapter(deptAdapter);
 
         }
@@ -139,7 +139,7 @@ public class AttendanceFragment extends Fragment implements AdapterView.OnItemSe
             ArrayList<String> semOptions = new ArrayList<>();
             semOptions.add(Batchdetails.sems.get(Batchdetails.batches.indexOf(Batchdetails.batchSelected)));
             semSpin.setOnItemSelectedListener(this);
-            ArrayAdapter semAdapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, semOptions);
+            ArrayAdapter semAdapter = new ArrayAdapter(getContext(), R.layout.spinner_item, semOptions);
             semSpin.setAdapter(semAdapter);
 
             Batchdetails.semSelected = semOptions.get(0);

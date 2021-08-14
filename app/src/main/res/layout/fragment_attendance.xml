@@ -4,76 +4,177 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="#FF3700B3"
     tools:context=".AttendanceFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/selectBatch_TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rit_white_png"
+        android:contentDescription="@string/rit_logo" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_Guideline1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_begin="64dp" />
+
+    <TextView
+        android:id="@+id/selectBatch_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="@font/artifika"
+        android:text="@string/select_batch"
+        android:textColor="#FFEB3B"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
+        app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
+        app:layout_constraintTop_toTopOf="@id/horizontal_guideline" />
 
     <Spinner
         android:id="@+id/batch_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFF"
         app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/selectBatch_TextView"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/selectDept_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/artifika"
+        android:text="@string/select_department"
+        android:textColor="#FFEB3B"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
+        app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/batch_Spinner" />
 
     <Spinner
         android:id="@+id/dept_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
+        android:backgroundTint="#FFF"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/batch_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/batch_Spinner"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/selectSect_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/artifika"
+        android:padding="10dp"
+        android:text="@string/select_section"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
+        app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/dept_Spinner" />
 
     <Spinner
         android:id="@+id/section_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
+        android:backgroundTint="#FFF"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/dept_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/dept_Spinner"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/selectSem_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/artifika"
+        android:padding="10dp"
+        android:text="@string/semester"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
+        app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/section_Spinner" />
 
     <Spinner
         android:id="@+id/sem_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
+        android:backgroundTint="#FFF"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/section_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/section_Spinner"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/selectHour_TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/artifika"
+        android:padding="10dp"
+        android:text="@string/select_hour"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
+        app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/sem_Spinner" />
 
     <Spinner
         android:id="@+id/hour_Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
+        android:backgroundTint="#FFF"
         app:layout_constraintEnd_toEndOf="@+id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@+id/vertical_Guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/sem_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/sem_Spinner"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/markAttendance_Button"
+        style="@style/button_style"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
+        android:fontFamily="@font/amaranth"
         android:text="@string/mark_attendance"
         app:layout_constraintEnd_toEndOf="@id/vertical_Guideline2"
         app:layout_constraintStart_toStartOf="@id/vertical_Guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/hour_Spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/hour_Spinner"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_Guideline2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.85" />
+        app:layout_constraintGuide_end="64dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

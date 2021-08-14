@@ -11,8 +11,9 @@
         android:gravity="end"
         android:padding="3dp"
         android:layout_marginEnd="5dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="20sp"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toStartOf="@id/sName_TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,8 +24,9 @@
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:layout_marginStart="5dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="20sp"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/studentRno_TextView"
         app:layout_constraintTop_toTopOf="parent" />

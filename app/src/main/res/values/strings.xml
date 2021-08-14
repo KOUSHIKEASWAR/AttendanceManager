@@ -29,4 +29,16 @@
     <string name="confirm_attendance">Confirm Attendance</string>
     <string name="subject">SUBJECT</string>
     <string name="export_data">EXPORT DATA</string>
+    <string name="textview">TextView</string>
+    <string name="present">P</string>
+    <string name="absent">A</string>
+    <string name="onduty">OD</string>
+    <string name="select_batch">Select Batch</string>
+    <string name="select_department">Select Department</string>
+    <string name="select_section">Select Section</string>
+    <string name="semester">Semester</string>
+    <string name="select_hour">Select Hour</string>
+    <string name="select_subject">Subject : </string>
+    <string name="choose_the_subject">Choose the subject at top</string>
+    <string name="rit_logo">RIT LOGO</string>
 </resources>

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="1dp"
-    android:layout_marginBottom="1dp">
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -17,8 +17,9 @@
         android:id="@+id/sno_TextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="15sp"
+        android:textColor="#FFF"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@+id/studentName_TextView"
         app:layout_constraintEnd_toStartOf="@id/guideline2"
@@ -29,8 +30,9 @@
         android:id="@+id/studentRollNo_TextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="15sp"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toStartOf="@id/guideline3"
         app:layout_constraintStart_toEndOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,8 +41,9 @@
         android:id="@+id/studentName_TextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/textview"
         android:textSize="20sp"
+        android:textColor="#FFF"
         app:layout_constraintEnd_toStartOf="@id/guideline3"
         app:layout_constraintStart_toEndOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@id/studentRollNo_TextView" />
@@ -63,24 +66,27 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:buttonTint="#83EA0C"
+            android:textColor="#FFF"
             android:layout_weight="1"
-            android:text="P" />
+            android:text="@string/present" />
 
         <RadioButton
             android:id="@+id/absent_RadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="#B30D01"
-            android:text="A" />
+            android:buttonTint="#F13427"
+            android:textColor="#FFF"
+            android:text="@string/absent" />
 
         <RadioButton
             android:id="@+id/od_RadioButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/purple_700"
-            android:text="OD" />
+            android:buttonTint="#0AB3FF"
+            android:textColor="#FFF"
+            android:text="@string/onduty" />
     </RadioGroup>
 
     <androidx.constraintlayout.widget.Guideline

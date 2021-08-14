@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF3700B3"
     tools:context=".ViewAttendanceFragment">
 
     <TableLayout
@@ -28,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="@string/batch_dept_sect"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
 
             <TextView
@@ -38,7 +39,7 @@
                 android:layout_column="1"
                 android:gravity="end"
                 android:text="@string/sem_x"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
         </TableRow>
 
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="@string/hour"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
 
             <TextView
@@ -62,7 +63,7 @@
                 android:layout_column="1"
                 android:gravity="end"
                 android:text="@string/date"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
         </TableRow>
 
@@ -76,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:text="@string/subject"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
 
             <TextView
@@ -86,18 +87,21 @@
                 android:layout_column="1"
                 android:gravity="end"
                 android:text="@string/day"
-                android:textColor="#EF6C00"
+                android:textColor="#FFEB3B"
                 android:textSize="20sp" />
         </TableRow>
 
     </TableLayout>
 
+
+
     <Button
         android:id="@+id/exportData_Button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:text="@string/export_data"
+        android:fontFamily="@font/amaranth"
+        style="@style/button_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

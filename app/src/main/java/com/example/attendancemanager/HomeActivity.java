@@ -12,9 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,9 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -52,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().add(R.id.frameLayout, viewAttendanceFragment, "2").hide(viewAttendanceFragment).commit();
         fragmentManager.beginTransaction().add(R.id.frameLayout, attendanceFragment, "1").commit();
 
+        Batchdetails.batches.clear();
+        Batchdetails.batches.add("Select a batch");
         getItems();
     }
 
@@ -79,8 +76,6 @@ public class HomeActivity extends AppCompatActivity {
 
     public static void changeToMarkAttendanceFragment(){
         FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
-        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
-        //active = markAttendanceFragment;
 
         fragmentManager1.beginTransaction()
                 .replace(R.id.frameLayout, MarkAttendanceFragment.class, null)
@@ -94,8 +89,6 @@ public class HomeActivity extends AppCompatActivity {
 
     public static void changeToAttendanceConfirmFragment() {
         FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
-        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
-        //active = markAttendanceFragment;
 
         fragmentManager1.beginTransaction()
                 .replace(R.id.frameLayout, AttendanceConfirmFragment.class, null)
@@ -108,8 +101,6 @@ public class HomeActivity extends AppCompatActivity {
 
     public static void changeToViewAttendanceFragment() {
         FragmentManager fragmentManager1 = attendanceFragment.getParentFragmentManager();
-        //fragmentManager1.beginTransaction().hide(active).show(markAttendanceFragment).commit();
-        //active = markAttendanceFragment;
 
         fragmentManager1.beginTransaction()
                 .replace(R.id.frameLayout, ViewAttendanceFragment.class, null)
@@ -124,20 +115,11 @@ public class HomeActivity extends AppCompatActivity {
 
         loading =  ProgressDialog.show(this,"Loading","please wait",false,true);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://script.google.com/macros/s/AKfycbydb7Fr8ItCL_zxLL9AGEqkXuAn-472IQVP54-zmgZmVSWsZy8y63_HL2OSokQCXzw/exec?action=getItems",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        parseItems(response);
-                    }
-                },
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                "https://script.google.com/macros/s/AKfycbydb7Fr8ItCL_zxLL9AGEqkXuAn-472IQVP54-zmgZmVSWsZy8y63_HL2OSokQCXzw/exec?action=getItems",
+                response -> parseItems(response),
 
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(HomeActivity.this, "Error 404 Data Not Found", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                error -> Toast.makeText(HomeActivity.this, "Error 404 Data Not Found", Toast.LENGTH_SHORT).show()
         );
 
         int socketTimeOut = 10000;

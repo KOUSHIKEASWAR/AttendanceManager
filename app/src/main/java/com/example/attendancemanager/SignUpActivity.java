@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseFirestore mFireStore;
     FirebaseAuth fAuth;
     EditText staffId, staffName, collegeMail, department, phoneNumber, password, passwordCheck;
-    String emailPattern = "[a-z.]*+[a-z.]*+[0-9.]*+[a-z]+@ritchennai.edu.in$";
+    String emailPattern = "[a-z.]*+@ritchennai.edu.in$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
